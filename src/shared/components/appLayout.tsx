@@ -1,22 +1,22 @@
-import { FC, ReactNode } from "react";
+import { FC, memo, ReactNode } from "react";
 
 type BreadcrumbLinkType = {
   name: string;
   href: string;
 };
 type BreadcrumbItemProps = BreadcrumbLinkType;
-const BreadcrumbItem: FC<BreadcrumbItemProps> = ({ name, href }) => {
+const BreadcrumbItem: FC<BreadcrumbItemProps> = memo(({ name, href }) => {
   return (
     <a href={href} className="text-sm text-white/70 hover:text-white/90">
       {name}
     </a>
   );
-};
+});
 
 type BreadcrumbProps = {
   links: BreadcrumbLinkType[];
 };
-const Breadcrumb: FC<BreadcrumbProps> = ({ links }) => {
+const Breadcrumb: FC<BreadcrumbProps> = memo(({ links }) => {
   if (links.length === 0) return null;
 
   return (
@@ -38,7 +38,7 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ links }) => {
       })}
     </div>
   );
-};
+});
 type AppLayoutProps = {
   title: string;
   sourceCode?: string;
@@ -51,7 +51,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
   children
 }) => {
   return (
-    <div className="h-screen w-screen md:p-10 flex flex-col bg-slate-900 text-white p-6">
+    <div className="h-screen w-screen pb-0 md:p-10 md:pb-0 flex flex-col bg-slate-900 text-white p-6 overflow-x-hidden">
       <header className="flex justify-between mb-6">
         <div className="flex flex-col">
           <Breadcrumb
