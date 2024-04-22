@@ -1,6 +1,10 @@
+import { AppLayout } from "./shared/components";
+
 function App() {
   return (
-    <div className="bg-slate-800 p-6 text-white text-base">Hello, world</div>
+    <AppLayout title="Feature List">
+      <div className="bg-slate-800 p-6 text-white text-base">Hello, world</div>
+    </AppLayout>
   );
 }
 
