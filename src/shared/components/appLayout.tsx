@@ -1,4 +1,5 @@
-import { FC, memo, ReactNode } from "react";
+import { FC, memo, ReactNode, useMemo } from "react";
+import { Link } from "react-router-dom";
 
 type BreadcrumbLinkType = {
   name: string;
@@ -7,9 +8,9 @@ type BreadcrumbLinkType = {
 type BreadcrumbItemProps = BreadcrumbLinkType;
 const BreadcrumbItem: FC<BreadcrumbItemProps> = memo(({ name, href }) => {
   return (
-    <a href={href} className="text-sm text-white/70 hover:text-white/90">
+    <Link to={href} className="text-sm text-white/70 hover:text-white/90">
       {name}
-    </a>
+    </Link>
   );
 });
 
@@ -18,9 +19,8 @@ type BreadcrumbProps = {
 };
 const Breadcrumb: FC<BreadcrumbProps> = memo(({ links }) => {
   if (links.length === 0) return null;
-
   return (
-    <div className="flex ">
+    <div className="flex">
       {links.map((link, index) => {
         const isLast = index === links.length - 1;
 
@@ -32,7 +32,7 @@ const Breadcrumb: FC<BreadcrumbProps> = memo(({ links }) => {
         return (
           <>
             <BreadcrumbItem key={index} name={link.name} href={link.href} />
-            <div className="text-sm text-white/70 font-bold">-</div>
+            <div className="text-sm text-white/90 font-semibold px-1.5">{">"}</div>
           </>
         );
       })}
@@ -41,6 +41,7 @@ const Breadcrumb: FC<BreadcrumbProps> = memo(({ links }) => {
 });
 type AppLayoutProps = {
   title: string;
+  link?: string;
   sourceCode?: string;
   children: ReactNode;
 };
@@ -48,20 +49,28 @@ type AppLayoutProps = {
 export const AppLayout: FC<AppLayoutProps> = ({
   title,
   sourceCode,
-  children
+  children,
+  link
 }) => {
+  const currentLink = useMemo(() => {
+    const links = [
+      {
+        name: "Feature List",
+        href: "/"
+      }
+    ];
+    if (link) {
+      return links.concat({ name: title, href: link });
+    } else {
+      return links;
+    }
+  }, [link, title]);
+
   return (
     <div className="h-screen w-screen pb-0 md:p-10 md:pb-0 flex flex-col bg-slate-900 text-white p-6 overflow-x-hidden">
       <header className="flex justify-between mb-6">
         <div className="flex flex-col">
-          <Breadcrumb
-            links={[
-              {
-                name: "Home",
-                href: "/home"
-              }
-            ]}
-          />
+          <Breadcrumb links={currentLink} />
           <h1 className="text-xl md:text-3xl mt-3">{title}</h1>
         </div>
         <div className="flex items-end">

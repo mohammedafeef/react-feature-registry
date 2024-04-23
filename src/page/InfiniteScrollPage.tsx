@@ -38,7 +38,7 @@ export const InfiniteScrollPage = () => {
     setList(initialList);
   }, []);
   return (
-    <AppLayout title="Infinite Scroll">
+    <AppLayout title="Infinite Scroll" link="/infinite-scroll">
       <InfiniteScrollList
         onScrollEnd={handleNextPage}
         className="gap-8 md:flex-row flex-wrap justify-around"
