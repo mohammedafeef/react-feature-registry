@@ -22,7 +22,7 @@ export const FeatureListPage = () => {
   return (
     <AppLayout title="Features List">
       {/* TODO:Implement feature search */}
-      <div className="flex flex-col gap-8 md:flex-row flex-wrap justify-around">
+      <div className="flex flex-col gap-8 md:flex-row flex-wrap">
         {featureList.map((feature) => (
           <FeatureItem
             key={feature.href}
