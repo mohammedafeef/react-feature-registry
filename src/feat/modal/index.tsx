@@ -23,14 +23,14 @@ export const Modal: FC<ModalProps> = memo(
         return;
     }
     return (
-      <div className="w-screen h-screen overflow-hidden flex items-center justify-center">
+      <div className="fixed inset-0 w-screen h-screen overflow-hidden flex items-center justify-center">
         <div
           className={cn("fixed z-[1] inset-0", {
-            "bg-black/20": !hideBackdrop
+            "bg-black/80": !hideBackdrop
           })}
           onClick={handleBackdropClick}
         />
-        <div className={cn("flex p-6 rounded bg-slate-500/90", className)}>
+        <div className={cn("flex p-6 rounded bg-slate-500/90 z-10", className)}>
           {children}
         </div>
       </div>

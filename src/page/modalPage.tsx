@@ -16,7 +16,7 @@ export const ModalPage = () => {
     <AppLayout title="Modal" link="/modal">
       <button
         onClick={handleOpen}
-        className="bg-slate/80 text-slate-900 px-3 py-2 ring-0 ring-gray-400 rounded text-sm hover:bg-slate/90"
+        className="bg-white/80 text-slate-900 px-3 py-2 ring-0 ring-gray-400 rounded text-sm hover:bg-white/90"
       >
         Open modal
       </button>
