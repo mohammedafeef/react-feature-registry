@@ -1,4 +1,4 @@
-import { FeatureListPage, InfiniteScrollPage } from "@/page";
+import { FeatureListPage, InfiniteScrollPage, ModalPage } from "@/page";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -6,6 +6,7 @@ function App() {
     <Routes>
       <Route path="/" element={<FeatureListPage />} />
       <Route path="/infinite-scroll" element={<InfiniteScrollPage />} />
+      <Route path="/modal" element={<ModalPage />} />
     </Routes>
   );
 }

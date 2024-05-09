@@ -1,3 +1,4 @@
 import { InfiniteScrollList } from "./infiniteScroll";
+import { Modal } from "./modal";
 
-export { InfiniteScrollList };
+export { InfiniteScrollList, Modal };
