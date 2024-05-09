@@ -68,7 +68,7 @@ export const ImageCropper: FC<ImageCropperProps> = ({ src }) => {
   return (
     <div
       ref={imageContainerRef}
-      className="aspect-square rounded ring-1 ring-slate-700 border border-slate-700 overflow-hidden"
+      className="aspect-square rounded ring-1 ring-slate-700 border border-slate-700 overflow-hidden w-[600px] h-[600px]"
     >
       <img
         alt="Cropping image"

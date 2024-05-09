@@ -1,5 +1,6 @@
 import { InfiniteScrollPage } from "./InfiniteScrollPage";
 import { FeatureListPage } from "./FeatureListPage";
-import { ModalPage } from "./modalPage";
+import { ModalPage } from "./ModalPage";
+import { ImageCropperPage } from "./ImageCropperPage";
 
-export { InfiniteScrollPage, FeatureListPage, ModalPage };
+export { InfiniteScrollPage, FeatureListPage, ModalPage, ImageCropperPage };
