@@ -6,5 +6,9 @@ export const featureList = [
   {
     name: "Modal",
     href: "/modal"
+  },
+  {
+    name: "Image Cropper",
+    href: "/image-cropper"
   }
 ];

@@ -1,5 +1,6 @@
 import { FC, memo, ReactNode, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { cn } from "../lib/cn";
 
 type BreadcrumbLinkType = {
   name: string;
@@ -32,7 +33,9 @@ const Breadcrumb: FC<BreadcrumbProps> = memo(({ links }) => {
         return (
           <>
             <BreadcrumbItem key={index} name={link.name} href={link.href} />
-            <div className="text-sm text-white/90 font-semibold px-1.5">{">"}</div>
+            <div className="text-sm text-white/90 font-semibold px-1.5">
+              {">"}
+            </div>
           </>
         );
       })}
@@ -44,13 +47,15 @@ type AppLayoutProps = {
   link?: string;
   sourceCode?: string;
   children: ReactNode;
+  className?: string;
 };
 
 export const AppLayout: FC<AppLayoutProps> = ({
   title,
   sourceCode,
   children,
-  link
+  link,
+  className
 }) => {
   const currentLink = useMemo(() => {
     const links = [
@@ -81,7 +86,7 @@ export const AppLayout: FC<AppLayoutProps> = ({
           )}
         </div>
       </header>
-      <div className="flex-1">{children}</div>
+      <div className={cn("flex-1", className)}>{children}</div>
     </div>
   );
 };
