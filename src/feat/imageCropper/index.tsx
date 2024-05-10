@@ -13,16 +13,16 @@ export const ImageCropper: FC<ImageCropperProps> = ({ src }) => {
     return {
       top: crop.y,
       left: crop.x,
-      scale: scale
+      transform: `scale(${scale})`
     };
   }, [scale, crop]);
 
   useGesture(
     {
-      onDrag: ({ offset: [x, y] }) => {
+      onDrag: ({ movement: [x, y] }) => {
         setCrop({ x: x, y: y });
       },
-      onPinch: ({ offset: [s] }) => {
+      onPinch: ({ movement: [s] }) => {
         setScale(Math.min(1 + s / 50, 3));
       },
       onDragEnd: maybeAdjustImage,
@@ -41,7 +41,8 @@ export const ImageCropper: FC<ImageCropperProps> = ({ src }) => {
   );
   function maybeAdjustImage() {
     if (!imageRef.current || !imageContainerRef.current) return;
-    const newCrop = crop;
+    const newCrop = { ...crop };
+    // Logic for cropper edge correction based on image bounds basically limiting image in the cropper
     const imageBounds = imageRef.current.getBoundingClientRect();
     const containerBounds = imageContainerRef.current.getBoundingClientRect();
     const originalWidth = imageRef.current.clientWidth;
@@ -68,14 +69,15 @@ export const ImageCropper: FC<ImageCropperProps> = ({ src }) => {
   return (
     <div
       ref={imageContainerRef}
-      className="aspect-square rounded ring-1 ring-slate-700 border border-slate-700 overflow-hidden w-[600px] h-[600px]"
+      className="aspect-square rounded ring-1 ring-slate-700 border border-slate-700 overflow-hidden aspect-h-4 aspect-w-4"
     >
       <img
+        draggable="false"
         alt="Cropping image"
         src={src}
         ref={imageRef}
         style={imageTransitionStyle}
-        className="relative w-auto h-full max-w-none max-h-none touch-none"
+        className="relative max-w-none max-h-none touch-none"
       />
     </div>
   );
