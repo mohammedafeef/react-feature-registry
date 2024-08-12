@@ -10,5 +10,9 @@ export const featureList = [
   {
     name: "Image Cropper",
     href: "/image-cropper"
+  },
+  {
+    name: "Event Delegation",
+    href: "/event-delegation"
   }
 ];
